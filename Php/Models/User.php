@@ -3,6 +3,7 @@ class User
 {
 	var $userId;
 	var $nickname;
+	var $username;
 	var $password;
 	var $age;
 	var $email;
@@ -24,6 +25,15 @@ class User
 	function SetNickname($value)
 	{
 		$this->nickname = $value;
+	}
+	
+	function GetUsername()
+	{
+		return $this->username;
+	}
+	function SetUsername($value)
+	{
+		$this->username = $value;
 	}
 	
 	function GetPassword()
@@ -63,11 +73,12 @@ class User
 	}
 	
 
-	function User($Nickname, $Password, $Age, $Email)
+	function User($Nickname, $Username, $Password, $Age, $Email)
 	{
 		$this->userId = 0;
 	
 		$this->nickname = $Nickname;
+		$this->username = $Username;
 		$this->password = $Password;
 		$this->age = $Age;
 		$this->email = $Email;
