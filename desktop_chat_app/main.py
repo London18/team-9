@@ -1,14 +1,16 @@
-import speech_recognition as sr
+from gtts import gTTS
+import pygame
 
 
-r = sr.Recognizer()
+def play_message(msg):
+	tts = gTTS(msg)
+	tts.save('audio.mp3')
+	pygame.mixer.init()
+	pygame.mixer.music.load('audio.mp3')
+	pygame.mixer.music.play()
+	while pygame.mixer.music.get_busy() == True:
+	    continue
 
-with sr.Microphone() as source:
-	print('Hi I am Sam')
-	audio = r.listen(source)
-	print('Time over, boss')
 
-try:
-	print('Text: ', r.recognize_google(audio))
-except:
-	pass
+if __name__ == '__main__':
+	play_message("some message")

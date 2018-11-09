@@ -165,3 +165,4 @@ dmypy.json
 hs_err_pid*
 
 ./desktop_chat_app/audio.mp3
+audio.mp3
