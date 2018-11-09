@@ -14,6 +14,7 @@ function ConvertListToUsers($data)
 	{
 		$user = new User(
 		$row["Nickname"], 
+		$row["Username"], 
 		$row["Password"], 
 		$row["Age"], 
 		$row["Email"] 
@@ -35,6 +36,16 @@ function GetUsers($database)
 	return $users;
 }
 
+function GetUsersByUsernamePassword($database, $username, $password)
+{
+	$data = $database->ReadData("SELECT * FROM Users WHERE Username = '$username' and Password = '$password'");
+	$users = ConvertListToUsers($data);
+	if(0== count($users))
+	{
+		return [GetEmptyUser()];
+	}
+	return $users;
+}
 function GetUsersByUserId($database, $userId)
 {
 	$data = $database->ReadData("SELECT * FROM Users WHERE UserId = $userId");
@@ -49,8 +60,9 @@ function GetUsersByUserId($database, $userId)
 
 function AddUser($database, $user)
 {
-	$query = "INSERT INTO Users(Nickname, Password, Age, Email, CreationTime) VALUES(";
+	$query = "INSERT INTO Users(Nickname, Username, Password, Age, Email, CreationTime) VALUES(";
 	$query = $query . "'" . $user->GetNickname() . "', ";
+	$query = $query . "'" . $user->GetUsername() . "', ";
 	$query = $query . "'" . $user->GetPassword() . "', ";
 	$query = $query . $user->GetAge().", ";
 	$query = $query . "'" . $user->GetEmail() . "', ";
@@ -69,6 +81,7 @@ function UpdateUser($database, $user)
 {
 	$query = "UPDATE Users SET ";
 	$query = $query . "Nickname='" . $user->GetNickname() . "', ";
+	$query = $query . "Username='" . $user->GetUsername() . "', ";
 	$query = $query . "Password='" . $user->GetPassword() . "', ";
 	$query = $query . "Age=" . $user->GetAge().", ";
 	$query = $query . "Email='" . $user->GetEmail() . "'";
@@ -87,6 +100,7 @@ function TestAddUser($database)
 {
 	$user = new User(
 		'Test',//Nickname
+		'Test',//Username
 		'Test',//Password
 		0,//Age
 		'Test'//Email
@@ -99,6 +113,7 @@ function GetEmptyUser()
 {
 	$user = new User(
 		'',//Nickname
+		'',//Username
 		'',//Password
 		0,//Age
 		''//Email
@@ -115,6 +130,21 @@ if(CheckGetParameters(["cmd"]))
 			echo json_encode(GetUsers($database));
 	}
 
+	else if("getUsersByUsernamePassword" == $_GET["cmd"])
+	{
+		if(CheckGetParameters([
+			'username',
+			'password'
+			]))
+		{
+			$database = new DatabaseOperations();
+			echo json_encode(GetUsersByUsernamePassword($database, 
+				$_GET["username"],
+				$_GET["password"]
+			));
+		}
+	
+	}
 	else if("getUsersByUserId" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
@@ -133,6 +163,7 @@ if(CheckGetParameters(["cmd"]))
 	{
 		if(CheckGetParameters([
 			'nickname',
+			'username',
 			'password',
 			'age',
 			'email'
@@ -141,6 +172,7 @@ if(CheckGetParameters(["cmd"]))
 			$database = new DatabaseOperations();
 			$user = new User(
 				$_GET['nickname'],
+				$_GET['username'],
 				$_GET['password'],
 				$_GET['age'],
 				$_GET['email']
@@ -159,6 +191,7 @@ if(CheckGetParameters(["cmd"]))
 	{
 		if(CheckPostParameters([
 			'nickname',
+			'username',
 			'password',
 			'age',
 			'email'
@@ -167,6 +200,7 @@ if(CheckGetParameters(["cmd"]))
 			$database = new DatabaseOperations();
 			$user = new User(
 				$_POST['nickname'],
+				$_POST['username'],
 				$_POST['password'],
 				$_POST['age'],
 				$_POST['email']
@@ -185,6 +219,7 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 		$user = new User(
 			$_POST['nickname'],
+			$_POST['username'],
 			$_POST['password'],
 			$_POST['age'],
 			$_POST['email']
