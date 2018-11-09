@@ -1,10 +1,11 @@
-package com.ratga.mymix;
+package com.ratga.mymix.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ratga.mymix.R;
 import com.stfalcon.chatkit.messages.MessageInput;
 import com.stfalcon.chatkit.messages.MessagesList;
 
