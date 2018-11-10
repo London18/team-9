@@ -4,7 +4,7 @@ require_once 'Responses.php';
 
 function getKeywordsFromSentence($message)
 {
-    $words = explode(" ", $message->GetValue());
+    $words = explode(" ", strtolower($message->GetValue()));
 
     return $words;
 }
