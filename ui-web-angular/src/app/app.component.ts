@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChatAdapter } from 'ng-chat';
 import { MyAdapter } from './my-adapter';
 
