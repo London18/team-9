@@ -1,6 +1,6 @@
 from flask import Flask
 from gtts import gTTS
-# import pygame
+import pygame
 import speech_recognition as sr
 import requests
 
