@@ -30,6 +30,11 @@ function GetResponses($database)
 {
 	$data = $database->ReadData("SELECT * FROM Responses");
 	$responses = ConvertListToResponses($data);
+
+	foreach($responses as $response)
+		{
+			 $response->SetKeywords(GetKeywordsByResponseId($database, $response->GetResponseId()));
+		}
 	return $responses;
 }
 
@@ -102,12 +107,7 @@ if(CheckGetParameters(["cmd"]))
 		$database = new DatabaseOperations();
 		$responses = GetResponses($database);
 
-		foreach($responses as $response)
-		{
-			//var_dump(GetKeywordsByResponseId($database, $response->GetResponseId()));
-			echo "<br>";
-			 $response->SetKeywords(GetKeywordsByResponseId($database, $response->GetResponseId()));
-		}
+		
 			echo json_encode($responses);
 	}
 

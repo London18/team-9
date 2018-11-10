@@ -1,9 +1,12 @@
 <?php
+require_once 'Response.php';
 class Keyword
 {
 	var $keywordId;
+	var $responseId;
 	var $word;
 	var $creationTime;
+	var $response;
 
 	function GetKeywordId()
 	{
@@ -12,6 +15,15 @@ class Keyword
 	function SetKeywordId($value)
 	{
 		$this->keywordId = $value;
+	}
+	
+	function GetResponseId()
+	{
+		return $this->responseId;
+	}
+	function SetResponseId($value)
+	{
+		$this->responseId = $value;
 	}
 	
 	function GetWord()
@@ -32,11 +44,21 @@ class Keyword
 		$this->creationTime = $value;
 	}
 	
+	function GetResponse()
+	{
+		return $this->response;
+	}
+	function SetResponse($value)
+	{
+		$this->response = $value;
+	}
+	
 
-	function Keyword($Word)
+	function Keyword($ResponseId, $Word)
 	{
 		$this->keywordId = 0;
 	
+		$this->responseId = $ResponseId;
 		$this->word = $Word;
 	}
 

@@ -4,6 +4,7 @@ class Response
 	var $responseId;
 	var $name;
 	var $creationTime;
+	var $keywords;
 
 	function GetResponseId()
 	{
@@ -30,6 +31,15 @@ class Response
 	function SetCreationTime($value)
 	{
 		$this->creationTime = $value;
+	}
+
+	function GetKeywords()
+	{
+		return $this->keywords;
+	}
+	function SetKeywords($value)
+	{
+		$this->keywords = $value;
 	}
 	
 

@@ -7,7 +7,7 @@ require_once 'Models/Message.php';
 require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
 require_once 'Sessions.php';
-require_once 'BotApi.php';
+require_once 'Users.php';
 function ConvertListToMessages($data)
 {
 	$messages = [];
@@ -15,6 +15,7 @@ function ConvertListToMessages($data)
 	foreach($data as $row)
 	{
 		$message = new Message(
+		$row["UserId"], 
 		$row["SessionId"], 
 		$row["Value"] 
 		);
@@ -33,6 +34,7 @@ function GetMessages($database)
 	$data = $database->ReadData("SELECT * FROM Messages");
 	$messages = ConvertListToMessages($data);
 	$messages = CompleteSessions($database, $messages);
+	$messages = CompleteUsers($database, $messages);
 	return $messages;
 }
 
@@ -45,6 +47,7 @@ function GetMessagesByMessageId($database, $messageId)
 		return [GetEmptyMessage()];
 	}
 	CompleteSessions($database, $messages);
+	CompleteUsers($database, $messages);
 	return $messages;
 }
 function GetMessagesBySessionId($database, $sessionId)
@@ -53,12 +56,10 @@ function GetMessagesBySessionId($database, $sessionId)
 	$messages = ConvertListToMessages($data);
 	if(0== count($messages))
 	{
-		$message = GetEmptyMessage();
-
-		$message->SetValue(getResponse($database, []));
-		return [$message];
+		return [GetEmptyMessage()];
 	}
 	CompleteSessions($database, $messages);
+	CompleteUsers($database, $messages);
 	return $messages;
 }
 
@@ -94,9 +95,11 @@ function CompleteSessions($database, $messages)
 	return $messages;
 }
 
+
 function AddMessage($database, $message)
 {
-	$query = "INSERT INTO Messages(SessionId, Value, CreationTime) VALUES(";
+	$query = "INSERT INTO Messages(UserId, SessionId, Value, CreationTime) VALUES(";
+	$query = $query . $message->GetUserId().", ";
 	$query = $query . $message->GetSessionId().", ";
 	$query = $query . "'" . $message->GetValue() . "', ";
 	$query = $query . "NOW()"."";
@@ -107,6 +110,7 @@ function AddMessage($database, $message)
 	$message->SetMessageId($id);
 	$message->SetCreationTime(date('Y-m-d H:i:s'));
 	$message->SetSession(GetSessionsBySessionId($database, $message->GetSessionId())[0]);
+	$message->SetUser(GetUsersByUserId($database, $message->GetUserId())[0]);
 	return $message;
 	
 }
@@ -114,6 +118,7 @@ function AddMessage($database, $message)
 function UpdateMessage($database, $message)
 {
 	$query = "UPDATE Messages SET ";
+	$query = $query . "UserId=" . $message->GetUserId().", ";
 	$query = $query . "SessionId=" . $message->GetSessionId().", ";
 	$query = $query . "Value='" . $message->GetValue() . "'";
 	$query = $query . " WHERE MessageId=" . $message->GetMessageId();
@@ -130,6 +135,7 @@ function UpdateMessage($database, $message)
 function TestAddMessage($database)
 {
 	$message = new Message(
+		0,//UserId
 		0,//SessionId
 		'Test'//Value
 	);
@@ -140,6 +146,7 @@ function TestAddMessage($database)
 function GetEmptyMessage()
 {
 	$message = new Message(
+		0,//UserId
 		0,//SessionId
 		''//Value
 	);
@@ -185,21 +192,19 @@ if(CheckGetParameters(["cmd"]))
 	else if("addMessage" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
+			'userId',
 			'sessionId',
 			'value'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$message = new Message(
+				$_GET['userId'],
 				$_GET['sessionId'],
 				$_GET['value']
 			);
 		
 			echo json_encode(AddMessage($database, $message));
-
-			$message->SetValue(getResponse($database, GetMessagesBySessionId($database,$_GET['sessionId'])));
-
-			AddMessage($database, $message);
 		}
 	
 	}
@@ -211,12 +216,14 @@ if(CheckGetParameters(["cmd"]))
 	if("addMessage" == $_GET["cmd"])
 	{
 		if(CheckPostParameters([
+			'userId',
 			'sessionId',
 			'value'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$message = new Message(
+				$_POST['userId'],
 				$_POST['sessionId'],
 				$_POST['value']
 			);
@@ -233,6 +240,7 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 		$message = new Message(
+			$_POST['userId'],
 			$_POST['sessionId'],
 			$_POST['value']
 		);
