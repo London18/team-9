@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ChatAdapter } from 'ng-chat';
+import { MyAdapter } from './my-adapter';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    
+    title = 'app';
+    userId = 999;
+
+    public adapter: ChatAdapter = new MyAdapter();
 }
