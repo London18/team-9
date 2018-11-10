@@ -1,0 +1,216 @@
+------------Users----------
+http://35.242.228.41/Users.php?cmd=getUsers - GET request -return all Users
+
+http://35.242.228.41/Users.php?cmd=getUsersByUsernamePassword&username=value&password=value - GET request -return Users filtered by Username, Password
+
+http://35.242.228.41/Users.php?cmd=getUsersByUserId&userId=value - GET request -return Users filtered by UserId
+
+
+http://35.242.228.41/Users.php?cmd=addUser&nickname=Test&username=Test&password=Test&age=0&email=Test - GET request -add a new User with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Users.php?cmd=addUser- POST request with following parameters
+nickname : VARCHAR(20)
+username : VARCHAR(20)
+password : VARCHAR(20)
+age : INT
+email : VARCHAR(20)
+add a new User with specified data and returns the User with id != 0 if succeeded
+
+
+http://35.242.228.41/Users.php?cmd=updateUser- PUT request with following parameters
+userId : INT
+nickname : VARCHAR(20)
+username : VARCHAR(20)
+password : VARCHAR(20)
+age : INT
+email : VARCHAR(20)
+update a User by id and returns the User with id != 0 if succeeded
+
+
+http://35.242.228.41/Users.php?cmd=updateUser&userId=0 - DELETE request
+deletes a User by id and returns the User with id == 0 if succeeded
+
+
+------------Sessions----------
+http://35.242.228.41/Sessions.php?cmd=getSessions - GET request -return all Sessions
+
+http://35.242.228.41/Sessions.php?cmd=getSessionsBySessionId&sessionId=value - GET request -return Sessions filtered by SessionId
+
+
+http://35.242.228.41/Sessions.php?cmd=addSession&userId=0 - GET request -add a new Session with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Sessions.php?cmd=addSession- POST request with following parameters
+userId : INT
+add a new Session with specified data and returns the Session with id != 0 if succeeded
+
+
+http://35.242.228.41/Sessions.php?cmd=updateSession- PUT request with following parameters
+sessionId : INT
+userId : INT
+update a Session by id and returns the Session with id != 0 if succeeded
+
+
+http://35.242.228.41/Sessions.php?cmd=updateSession&sessionId=0 - DELETE request
+deletes a Session by id and returns the Session with id == 0 if succeeded
+
+
+------------Messages----------
+http://35.242.228.41/Messages.php?cmd=getMessages - GET request -return all Messages
+
+http://35.242.228.41/Messages.php?cmd=getMessagesByMessageId&messageId=value - GET request -return Messages filtered by MessageId
+
+http://35.242.228.41/Messages.php?cmd=getMessagesBySessionId&sessionId=value - GET request -return Messages filtered by SessionId
+
+
+http://35.242.228.41/Messages.php?cmd=addMessage&sessionId=0&value=Test - GET request -add a new Message with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Messages.php?cmd=addMessage- POST request with following parameters
+sessionId : INT
+value : TEXT
+add a new Message with specified data and returns the Message with id != 0 if succeeded
+
+
+http://35.242.228.41/Messages.php?cmd=updateMessage- PUT request with following parameters
+messageId : INT
+sessionId : INT
+value : TEXT
+update a Message by id and returns the Message with id != 0 if succeeded
+
+
+http://35.242.228.41/Messages.php?cmd=updateMessage&messageId=0 - DELETE request
+deletes a Message by id and returns the Message with id == 0 if succeeded
+
+
+------------Moderaters----------
+http://35.242.228.41/Moderaters.php?cmd=getModeraters - GET request -return all Moderaters
+
+http://35.242.228.41/Moderaters.php?cmd=getModeratersByModeraterId&moderaterId=value - GET request -return Moderaters filtered by ModeraterId
+
+
+http://35.242.228.41/Moderaters.php?cmd=addModerater&userId=0&role=0 - GET request -add a new Moderater with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Moderaters.php?cmd=addModerater- POST request with following parameters
+userId : INT
+role : INT
+add a new Moderater with specified data and returns the Moderater with id != 0 if succeeded
+
+
+http://35.242.228.41/Moderaters.php?cmd=updateModerater- PUT request with following parameters
+moderaterId : INT
+userId : INT
+role : INT
+update a Moderater by id and returns the Moderater with id != 0 if succeeded
+
+
+http://35.242.228.41/Moderaters.php?cmd=updateModerater&moderaterId=0 - DELETE request
+deletes a Moderater by id and returns the Moderater with id == 0 if succeeded
+
+
+------------Feedback----------
+http://35.242.228.41/Feedback.php?cmd=getFeedback - GET request -return all Feedback
+
+http://35.242.228.41/Feedback.php?cmd=getFeedbackByFeedbackId&feedbackId=value - GET request -return Feedback filtered by FeedbackId
+
+
+http://35.242.228.41/Feedback.php?cmd=addFeedback&sessionId=0&value=Test&description=Test - GET request -add a new Feedback with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Feedback.php?cmd=addFeedback- POST request with following parameters
+sessionId : INT
+value : VARCHAR(20)
+description : TEXT
+add a new Feedback with specified data and returns the Feedback with id != 0 if succeeded
+
+
+http://35.242.228.41/Feedback.php?cmd=updateFeedback- PUT request with following parameters
+feedbackId : INT
+sessionId : INT
+value : VARCHAR(20)
+description : TEXT
+update a Feedback by id and returns the Feedback with id != 0 if succeeded
+
+
+http://35.242.228.41/Feedback.php?cmd=updateFeedback&feedbackId=0 - DELETE request
+deletes a Feedback by id and returns the Feedback with id == 0 if succeeded
+
+
+------------Responses----------
+http://35.242.228.41/Responses.php?cmd=getResponses - GET request -return all Responses
+
+http://35.242.228.41/Responses.php?cmd=getResponsesByResponseId&responseId=value - GET request -return Responses filtered by ResponseId
+
+
+http://35.242.228.41/Responses.php?cmd=addResponse&name=Test - GET request -add a new Response with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Responses.php?cmd=addResponse- POST request with following parameters
+name : VARCHAR(20)
+add a new Response with specified data and returns the Response with id != 0 if succeeded
+
+
+http://35.242.228.41/Responses.php?cmd=updateResponse- PUT request with following parameters
+responseId : INT
+name : VARCHAR(20)
+update a Response by id and returns the Response with id != 0 if succeeded
+
+
+http://35.242.228.41/Responses.php?cmd=updateResponse&responseId=0 - DELETE request
+deletes a Response by id and returns the Response with id == 0 if succeeded
+
+
+------------Keywords----------
+http://35.242.228.41/Keywords.php?cmd=getKeywords - GET request -return all Keywords
+
+http://35.242.228.41/Keywords.php?cmd=getKeywordsByKeywordId&keywordId=value - GET request -return Keywords filtered by KeywordId
+
+http://35.242.228.41/Keywords.php?cmd=getKeywordsByResponseId&responseId=value - GET request -return Keywords filtered by ResponseId
+
+
+http://35.242.228.41/Keywords.php?cmd=addKeyword&responseId=0&word=Test - GET request -add a new Keyword with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Keywords.php?cmd=addKeyword- POST request with following parameters
+responseId : INT
+word : VARCHAR(20)
+add a new Keyword with specified data and returns the Keyword with id != 0 if succeeded
+
+
+http://35.242.228.41/Keywords.php?cmd=updateKeyword- PUT request with following parameters
+keywordId : INT
+responseId : INT
+word : VARCHAR(20)
+update a Keyword by id and returns the Keyword with id != 0 if succeeded
+
+
+http://35.242.228.41/Keywords.php?cmd=updateKeyword&keywordId=0 - DELETE request
+deletes a Keyword by id and returns the Keyword with id == 0 if succeeded
+
+
+------------Notifications----------
+http://35.242.228.41/Notifications.php?cmd=getNotifications - GET request -return all Notifications
+
+http://35.242.228.41/Notifications.php?cmd=getNotificationsByNotificationId&notificationId=value - GET request -return Notifications filtered by NotificationId
+
+
+http://35.242.228.41/Notifications.php?cmd=addNotification&title=Test - GET request -add a new Notification with specified data and return the item with id != 0 if was added
+
+
+http://35.242.228.41/Notifications.php?cmd=addNotification- POST request with following parameters
+title : VARCHAR(15)
+add a new Notification with specified data and returns the Notification with id != 0 if succeeded
+
+
+http://35.242.228.41/Notifications.php?cmd=updateNotification- PUT request with following parameters
+notificationId : INT
+title : VARCHAR(15)
+update a Notification by id and returns the Notification with id != 0 if succeeded
+
+
+http://35.242.228.41/Notifications.php?cmd=updateNotification&notificationId=0 - DELETE request
+deletes a Notification by id and returns the Notification with id == 0 if succeeded
+
+
