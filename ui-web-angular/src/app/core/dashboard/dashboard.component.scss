@@ -18,9 +18,19 @@
 
 .card {
     display: inline-block;
-    width: 48%;
+    width: 23%;
     margin: 1%;
     padding: 0;
+    cursor: pointer;
+
+    &:hover {
+        .card-header {
+            background-color: #C5C8D9;
+        }
+        .card-content {
+            background-color: #C5C8D9;
+        }
+    }
 }
 
 .card-header {
@@ -41,6 +51,8 @@
     font-size: 24px;
     font-weight: 600;
     line-height: 36px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .card-header-subtitle {
