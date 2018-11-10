@@ -7,6 +7,7 @@ require_once 'Models/Message.php';
 require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
 require_once 'Sessions.php';
+require_once 'BotApi.php';
 function ConvertListToMessages($data)
 {
 	$messages = [];
@@ -46,13 +47,16 @@ function GetMessagesByMessageId($database, $messageId)
 	CompleteSessions($database, $messages);
 	return $messages;
 }
-function GetMessagesByValue($database, $value)
+function GetMessagesBySessionId($database, $sessionId)
 {
-	$data = $database->ReadData("SELECT * FROM Messages WHERE Value = '$value'");
+	$data = $database->ReadData("SELECT * FROM Messages WHERE SessionId = $sessionId");
 	$messages = ConvertListToMessages($data);
 	if(0== count($messages))
 	{
-		return [GetEmptyMessage()];
+		$message = GetEmptyMessage();
+
+		$message->SetValue(getResponse($database, []));
+		return [$message];
 	}
 	CompleteSessions($database, $messages);
 	return $messages;
@@ -164,15 +168,15 @@ if(CheckGetParameters(["cmd"]))
 		}
 	
 	}
-	else if("getMessagesByValue" == $_GET["cmd"])
+	else if("getMessagesBySessionId" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
-			'value'
+			'sessionId'
 			]))
 		{
 			$database = new DatabaseOperations();
-			echo json_encode(GetMessagesByValue($database, 
-				$_GET["value"]
+			echo json_encode(GetMessagesBySessionId($database, 
+				$_GET["sessionId"]
 			));
 		}
 	
@@ -192,6 +196,10 @@ if(CheckGetParameters(["cmd"]))
 			);
 		
 			echo json_encode(AddMessage($database, $message));
+
+			$message->SetValue(getResponse($database, GetMessagesBySessionId($database,$_GET['sessionId'])));
+
+			AddMessage($database, $message);
 		}
 	
 	}
