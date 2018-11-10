@@ -16,8 +16,8 @@ export class MessagesService {
   constructor() {
     this.messages$ = new BehaviorSubject<Message[]>(null);
     this.messages = new Array<Message>();
-    setTimeout(() => { this.messages.push(this.welcomeMessage1); this.messages$.next(this.messages); }, 1000);
-    setTimeout(() => { this.messages.push(this.welcomeMessage2); this.messages$.next(this.messages); }, 1000);
+    setTimeout(() => { this.messages.push(this.welcomeMessage1); this.messages$.next(this.messages); setTimeout(() => { this.messages.push(this.welcomeMessage2); this.messages$.next(this.messages); }, 2000); }, 2000);
+
   }
 
   private createMessage(messageText: string): Message {

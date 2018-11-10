@@ -2,7 +2,7 @@
     <mat-toolbar-row>
         <span>Third Line</span>
         <span class="example-spacer"></span>
-       <!--  <mat-icon class="example-icon">favorite</mat-icon>
+        <!--  <mat-icon class="example-icon">favorite</mat-icon>
         <mat-icon class="example-icon">delete</mat-icon> -->
     </mat-toolbar-row>
 </mat-toolbar>
@@ -84,7 +84,13 @@
             {{message.value}}
         </div>
     </div>
+    <hr>
     <div class="chat-footer">
-
+        <mat-form-field>
+            <input matInput>
+        </mat-form-field>
+        <button mat-button>
+            <i class="material-icons">send</i>
+        </button>
     </div>
 </div>
