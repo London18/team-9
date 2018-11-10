@@ -6,6 +6,7 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 require_once 'Models/Response.php';
 require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
+require_once 'Keywords.php';
 function ConvertListToResponses($data)
 {
 	$responses = [];
@@ -31,6 +32,8 @@ function GetResponses($database)
 	$responses = ConvertListToResponses($data);
 	return $responses;
 }
+
+
 
 function GetResponsesByResponseId($database, $responseId)
 {
@@ -97,7 +100,15 @@ if(CheckGetParameters(["cmd"]))
 	if("getResponses" == $_GET["cmd"])
 	{
 		$database = new DatabaseOperations();
-			echo json_encode(GetResponses($database));
+		$responses = GetResponses($database);
+
+		foreach($responses as $response)
+		{
+			//var_dump(GetKeywordsByResponseId($database, $response->GetResponseId()));
+			echo "<br>";
+			 $response->SetKeywords(GetKeywordsByResponseId($database, $response->GetResponseId()));
+		}
+			echo json_encode($responses);
 	}
 
 	else if("getResponsesByResponseId" == $_GET["cmd"])

@@ -6,6 +6,7 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 require_once 'Models/Keyword.php';
 require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
+require_once 'Responses.php';
 function ConvertListToKeywords($data)
 {
 	$keywords = [];
@@ -13,6 +14,7 @@ function ConvertListToKeywords($data)
 	foreach($data as $row)
 	{
 		$keyword = new Keyword(
+		$row["ResponseId"], 
 		$row["Word"] 
 		);
 	
@@ -42,11 +44,53 @@ function GetKeywordsByKeywordId($database, $keywordId)
 	}
 	return $keywords;
 }
+function GetKeywordsByResponseId($database, $responseId)
+{
+	$data = $database->ReadData("SELECT * FROM Keywords WHERE ResponseId = $responseId");
+	$keywords = ConvertListToKeywords($data);
+	if(0== count($keywords))
+	{
+		return [GetEmptyKeyword()];
+	}
+	return $keywords;
+}
 
+function CompleteResponses($database, $keywords)
+{
+	$responses = GetResponses($database);
+	foreach($keywords as $keyword)
+	{
+		$start = 0;
+		$end = count($responses) - 1;
+		do
+		{
+	
+			$mid = floor(($start + $end) / 2);
+			if($keyword->GetResponseId() > $responses[$mid]->GetResponseId())
+			{
+				$start = $mid + 1;
+			}
+			else if($keyword->GetResponseId() < $responses[$mid]->GetResponseId())
+			{
+				$end = $mid - 1;
+			}
+			else if($keyword->GetResponseId() == $responses[$mid]->GetResponseId())
+			{
+				$start = $mid + 1;
+				$end = $mid - 1;
+				$keyword->SetResponse($responses[$mid]);
+			}
+	
+		}while($start <= $end);
+	}
+	
+	return $keywords;
+}
 
 function AddKeyword($database, $keyword)
 {
-	$query = "INSERT INTO Keywords(Word, CreationTime) VALUES(";
+	$query = "INSERT INTO Keywords(ResponseId, Word, CreationTime) VALUES(";
+	$query = $query . $keyword->GetResponseId().", ";
 	$query = $query . "'" . $keyword->GetWord() . "', ";
 	$query = $query . "NOW()"."";
 	
@@ -55,6 +99,7 @@ function AddKeyword($database, $keyword)
 	$id = $database->GetLastInsertedId();
 	$keyword->SetKeywordId($id);
 	$keyword->SetCreationTime(date('Y-m-d H:i:s'));
+	$keyword->SetResponse(GetResponsesByResponseId($database, $keyword->GetResponseId())[0]);
 	return $keyword;
 	
 }
@@ -62,6 +107,7 @@ function AddKeyword($database, $keyword)
 function UpdateKeyword($database, $keyword)
 {
 	$query = "UPDATE Keywords SET ";
+	$query = $query . "ResponseId=" . $keyword->GetResponseId().", ";
 	$query = $query . "Word='" . $keyword->GetWord() . "'";
 	$query = $query . " WHERE KeywordId=" . $keyword->GetKeywordId();
 	
@@ -77,6 +123,7 @@ function UpdateKeyword($database, $keyword)
 function TestAddKeyword($database)
 {
 	$keyword = new Keyword(
+		0,//ResponseId
 		'Test'//Word
 	);
 	
@@ -86,6 +133,7 @@ function TestAddKeyword($database)
 function GetEmptyKeyword()
 {
 	$keyword = new Keyword(
+		0,//ResponseId
 		''//Word
 	);
 	
@@ -113,15 +161,30 @@ if(CheckGetParameters(["cmd"]))
 		}
 	
 	}
+	else if("getKeywordsByResponseId" == $_GET["cmd"])
+	{
+		if(CheckGetParameters([
+			'responseId'
+			]))
+		{
+			$database = new DatabaseOperations();
+			echo json_encode(GetKeywordsByResponseId($database, 
+				$_GET["responseId"]
+			));
+		}
+	
+	}
 
 	else if("addKeyword" == $_GET["cmd"])
 	{
 		if(CheckGetParameters([
+			'responseId',
 			'word'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$keyword = new Keyword(
+				$_GET['responseId'],
 				$_GET['word']
 			);
 		
@@ -137,11 +200,13 @@ if(CheckGetParameters(["cmd"]))
 	if("addKeyword" == $_GET["cmd"])
 	{
 		if(CheckPostParameters([
+			'responseId',
 			'word'
 		]))
 		{
 			$database = new DatabaseOperations();
 			$keyword = new Keyword(
+				$_POST['responseId'],
 				$_POST['word']
 			);
 	
@@ -157,6 +222,7 @@ if(CheckGetParameters(["cmd"]))
 	{
 		$database = new DatabaseOperations();
 		$keyword = new Keyword(
+			$_POST['responseId'],
 			$_POST['word']
 		);
 		$keyword->SetKeywordId($_POST['keywordId']);
