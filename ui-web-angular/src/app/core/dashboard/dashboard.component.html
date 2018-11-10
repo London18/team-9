@@ -1,0 +1,90 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Third Line</span>
+        <span class="example-spacer"></span>
+       <!--  <mat-icon class="example-icon">favorite</mat-icon>
+        <mat-icon class="example-icon">delete</mat-icon> -->
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="card-container">
+    <mat-card class="card">
+        <mat-card-header class="card-header">
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title class="card-header-title">Shiba Inu</mat-card-title>
+            <mat-card-subtitle class="card-header-subtitle">Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content class="card-content">
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-header class="card-header">
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title class="card-header-title">Shiba Inu</mat-card-title>
+            <mat-card-subtitle class="card-header-subtitle">Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content class="card-content">
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-header class="card-header">
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title class="card-header-title">Shiba Inu</mat-card-title>
+            <mat-card-subtitle class="card-header-subtitle">Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content class="card-content">
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="card">
+        <mat-card-header class="card-header">
+            <div mat-card-avatar class="card-header-image"></div>
+            <mat-card-title class="card-header-title">Shiba Inu</mat-card-title>
+            <mat-card-subtitle class="card-header-subtitle">Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="card-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content class="card-content">
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+            </p>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>
+
+
+<!-- <ng-chat [adapter]="adapter" [userId]="userId" hideFriendsList="true"></ng-chat> -->
+
+<div class="chat">
+    <div class="chat-header">
+        The Mix
+    </div>
+    <div class="chat-body">
+        <div class="chat-row" *ngFor="let message of messages" [ngClass]="getMessageDirection(message) ? 'outgoing' : 'ingoing'">
+            {{message.value}}
+        </div>
+    </div>
+    <div class="chat-footer">
+
+    </div>
+</div>

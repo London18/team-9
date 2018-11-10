@@ -1,0 +1,92 @@
+.card-container {
+    width: 50%;
+    margin: 100px 35% 0 15%;
+    vertical-align: middle;
+}
+
+.card {
+    display: inline-block;
+    width: 48%;
+    margin: 1%;
+    padding: 0;
+}
+
+.card-header {
+    margin: 0;
+    background-color: #FAFAFA;
+}
+
+.card-header-image {
+    width: 40px;
+    height: 40px;
+    margin: auto 0 auto 10px;
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.card-header-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.card-header-subtitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 36px;
+}
+
+.card-content {
+    padding: 12px;
+    line-height: 20px;
+}
+
+.card-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.chat {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+
+    border: 1px green solid;
+}
+
+.chat-header {
+    background-color: #FAFAFA;
+    line-height: 60px;
+}
+
+.chat-body {
+    height: 500px;
+    background-color: #FDFDFD;
+}
+
+.chat-row {
+    width: 250px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+
+    &.outgoing {
+        clear: both;
+        float: right;
+        background-color: #05728F;
+    }
+
+    &.ingoing {
+        clear: both;
+        float: left;
+        background-color: #BBBBBB;
+    }
+}
+
+.chat-footer {
+
+}
