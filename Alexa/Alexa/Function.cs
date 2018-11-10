@@ -6,6 +6,7 @@ using System.Net.Http;
 using Alexa.NET.Response;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Request;
+using Newtonsoft.Json;
 using Amazon.Lambda.Core;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -49,7 +50,7 @@ namespace Alexa
                     }
                     else
                     {*/
-                    outputText = "no fall was detected";
+                    outputText = "That is kinda sad. We founded quite a few people with the same problem, mso you are not alone.";
                     //}
                 }
 
@@ -57,9 +58,9 @@ namespace Alexa
 
                 else
                 {
-                    outputText = $"Cosmin loves to suck the shaft.";
+                    outputText = $"Ask me anything";
                 }
-                return MakeSkillResponse(outputText, true);
+                return MakeSkillResponse(outputText, false);
             }
             else
             {
