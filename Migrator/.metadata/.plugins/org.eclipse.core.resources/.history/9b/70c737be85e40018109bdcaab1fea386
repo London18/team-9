@@ -1,0 +1,6 @@
+
+public class Article {
+	public String id;
+	public String date;
+	public String link;
+}
