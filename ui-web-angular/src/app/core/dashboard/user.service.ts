@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
+
 import { ServerUrl } from '../ServerUrl';
 import { HttpClient } from '@angular/common/http';
-import { pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Session } from '../../shared/models/Session';
 import { User } from '../../shared/models/User';
-import { Message } from '../../shared/models/Message';
 
 @Injectable({
   providedIn: 'root'

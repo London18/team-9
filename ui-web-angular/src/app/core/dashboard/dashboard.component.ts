@@ -34,13 +34,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((user) => {
         this.userId = user.userId;
 
-        setInterval(/* function () {
-          this.messagesService.getMessagesBySessionId(this.sessionId).subscribe((messages: Message[]) => {
-            this.messages = new Array<Message>();
-            messages.forEach(m => this.messages.push(m));
-          });
-        } */() => { console.log("HERE"); this.getAllMessages(); }, 2000);
-        console.log("HEREEEEE")
+        setInterval(() => { this.getAllMessages(); }, 2000);
         this.userService.createSession(user.userId)
           .subscribe((session: Session) => {
             this.sessionId = session.sessionId;

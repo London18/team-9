@@ -1,9 +1,6 @@
-<mat-toolbar>
+<mat-toolbar class="tool-bar">
     <mat-toolbar-row>
-        <span>Third Line</span>
-        <span class="example-spacer"></span>
-        <!--  <mat-icon class="example-icon">favorite</mat-icon>
-        <mat-icon class="example-icon">delete</mat-icon> -->
+        <img class="tool-bar-image" src="../../../assets/images/logo.png">
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -68,17 +65,12 @@
             </p>
         </mat-card-content>
     </mat-card>
-
-
 </div>
 
 
-<!-- <ng-chat [adapter]="adapter" [userId]="userId" hideFriendsList="true"></ng-chat> -->
-
 <div class="chat">
     <div class="chat-header">
-        <img class="chat-header-image">
-        The Mix
+        <img class="chat-header-image" src="../../../assets/images/logo.png">
     </div>
     <div class="chat-body">
         <div class="chat-row" *ngFor="let message of messages" [ngClass]="getMessageDirection(message) ? 'outgoing' : 'ingoing'">
