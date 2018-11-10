@@ -77,6 +77,7 @@
 
 <div class="chat">
     <div class="chat-header">
+        <img class="chat-header-image">
         The Mix
     </div>
     <div class="chat-body">
@@ -87,9 +88,9 @@
     <hr>
     <div class="chat-footer">
         <mat-form-field>
-            <input matInput>
+            <input matInput [(ngModel)]="messageInput">
         </mat-form-field>
-        <button mat-button>
+        <button mat-button (click)="sendMessage()">
             <i class="material-icons">send</i>
         </button>
     </div>
