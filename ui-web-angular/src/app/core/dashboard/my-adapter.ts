@@ -1,7 +1,8 @@
+import { Observable, of } from 'rxjs';
 import { ChatAdapter, User, Message, UserStatus } from 'ng-chat';
-import { Observable, of } from "rxjs";
 
 export class MyAdapter extends ChatAdapter {
+
     listFriends(): Observable<User[]> {
         var user1 = new User();
         user1.id = 1;
@@ -14,13 +15,7 @@ export class MyAdapter extends ChatAdapter {
         return of([user1, user2]);
     }
     getMessageHistory(userId: any): Observable<Message[]> {
-        var message = new Message();
-        message.fromId = 1;
-        message.toId = 2;
-        message.type = 1;
-        message.message = 'Hello';
-        message.seenOn = new Date();
-        return of([message]);
+        return of(userId);
     }
     sendMessage(message: Message): void {
 

@@ -1,7 +1,7 @@
 import { Session } from './Session';
 import { User } from './User';
 
-export interface Message {
+export class Message {
 	messageId: number;
 	userId: number;
 	sessionId: number;
@@ -9,4 +9,9 @@ export interface Message {
 	creationTime: string;
 	session: Session;
 	user: User;
+
+	public constructor() {
+		this.session = new Session();
+		this.user = new User();
+	}
 }

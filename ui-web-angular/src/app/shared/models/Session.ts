@@ -1,8 +1,12 @@
 import { User } from './User';
 
-export interface Session {
+export class Session {
 	sessionId: number;
 	userId: number;
 	creationTime: string;
 	user: User;
+
+	public Session() {
+		this.user = new User();
+	}
 }

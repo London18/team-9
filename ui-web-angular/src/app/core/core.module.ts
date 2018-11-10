@@ -8,13 +8,23 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgChatModule } from 'ng-chat';
+import { MaterialDesignModule } from '../material-design/material-design.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        CoreRoutingModule
+        CoreRoutingModule,
+        NgChatModule,
+        MaterialDesignModule
     ],
-    declarations: [LoginComponent, HeaderComponent, NotFoundComponent],
+    declarations: [
+        LoginComponent,
+        HeaderComponent,
+        NotFoundComponent,
+        DashboardComponent
+    ],
     exports: [
         RouterModule,
         HeaderComponent
