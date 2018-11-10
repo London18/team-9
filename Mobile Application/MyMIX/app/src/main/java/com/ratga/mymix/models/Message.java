@@ -67,31 +67,16 @@ public class Message implements IMessage {
     }
 
 
-    public Message(Integer userId, Integer sessionId, String value) {
-        this.userId = userId;
-        this.sessionId = sessionId;
-        this.value = value;
-    }
-
-    public Message(Integer userId, Integer sessionId, String value, Session session, User user) {
-        this(
-                0, //UserId
-                0, //SessionId
-                "Test" //Value
-        );
-        this.session = session;
+    public Message(User user, Session session, String value) {
+        this.userId = user.getUserId();
+        this.sessionId = session.getSessionId();
         this.user = user;
-
+        this.session = session;
+        this.value = value;
+        this.creationTime = new Date();
     }
 
     public Message() {
-        this(
-                0, //UserId
-                0, //SessionId
-                "Test" //Value
-        );
-        this.messageId = 0;
-        this.creationTime = new Date(0);
 
     }
 
@@ -106,7 +91,7 @@ public class Message implements IMessage {
     }
 
     public User getUser() {
-        return this.user;
+        return (user == null) ? new User() : user;
     }
 
     @Override
