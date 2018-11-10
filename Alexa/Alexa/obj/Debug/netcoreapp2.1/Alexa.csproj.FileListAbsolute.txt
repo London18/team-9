@@ -1,0 +1,11 @@
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.csprojAssemblyReference.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.csproj.CoreCompileInputs.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.AssemblyInfoInputs.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.AssemblyInfo.cs
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Debug\netcoreapp2.1\Alexa.deps.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Debug\netcoreapp2.1\Alexa.runtimeconfig.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Debug\netcoreapp2.1\Alexa.runtimeconfig.dev.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Debug\netcoreapp2.1\Alexa.dll
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Debug\netcoreapp2.1\Alexa.pdb
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.dll
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Debug\netcoreapp2.1\Alexa.pdb
