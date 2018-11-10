@@ -1,4 +1,5 @@
 package com.ratga.mymix.activities;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -78,8 +79,11 @@ public class ChatActivity extends AppCompatActivity {
                 Messages.getMessagesBySessionId(session, new Callback<List<Message>>() {
                     @Override
                     public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                        boolean scrolled = messagesList.getScrollState() != 0;
                         for (Message m : response.body())
                             adapter.upsert(m);
+                        if(!scrolled)
+                            messagesList.scrollToPosition(0);
                         handler.postDelayed(r, 300);
                     }
 
@@ -91,5 +95,13 @@ public class ChatActivity extends AppCompatActivity {
             }
         };
         handler.post(messagesGettter);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
