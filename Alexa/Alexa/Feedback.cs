@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 namespace DatabaseFunctionsGenerator
 {
-	public static class Feedback
+	public static class Feedbacks
 	{
 		public static async Task<List<Feedback>> GetFeedback()
 		{

@@ -83,7 +83,7 @@ namespace DatabaseFunctionsGenerator
 		}
 		
 		[JsonProperty(PropertyName = "session")]
-		public Session Session
+		public Session Sessions
 		{
 			get
 			{
