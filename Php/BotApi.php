@@ -4,13 +4,14 @@ require_once 'Responses.php';
 
 function getKeywordsFromSentence($message)
 {
-    $words = explode(" ", $message->GetValue());
+    $words = explode(" ", strtolower($message->GetValue()));
 
     return $words;
 }
 
 function getClosest($keywords, $responses)
 {
+
     $most=0;
     $responseMax = null;
     foreach($responses as $response)
@@ -22,6 +23,7 @@ function getClosest($keywords, $responses)
             {
                 if($Answerkeyword->GetWord() == $keyword)
                 {
+
                    $matches++;
 
                    break;
@@ -30,16 +32,19 @@ function getClosest($keywords, $responses)
 
             if($matches > $most)
             {
+
                 $most = $matches;
                 $responseMax = $response;
             }
         }
         
     }
+	return $responseMax;
 }
 
 function getResponse($database, $messages)
 {
+
 
     //first message
     if(0 == sizeof($messages))
@@ -51,18 +56,20 @@ function getResponse($database, $messages)
         return "Nice to meet you ".$messages[0]->GetValue().". From a scale from 1 to 10, how are you feeling? ";    
     }
 
-    //ask about nickname
-    if(1 == sizeof($messages))
-    {
-        return "Please tell how would you like me to call you!";    
-    }
-
     $keywords = getKeywordsFromSentence($messages[sizeof($messages) - 1]);
-    
-    getClosest($keywords, GetResponses($database));
+file_put_contents("keywords.log",json_encode($keywords)." empty");    
+	$closest=getClosest($keywords, GetResponses($database));
+	file_put_contents("object4.log",json_encode($closest)." empty");
+	$message = "I am sorry but i am still learning. Could you be more clear?";
+
+	if(null != $closest)
+{
+
+	$message="You may want to check ".$closest->GetName();
+}
     //var_dump();
 
-    return "Api message " . sizeof($messages);
+    return $message;
 }
 
 ?>

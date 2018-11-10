@@ -11,12 +11,14 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgChatModule } from 'ng-chat';
 import { MaterialDesignModule } from '../material-design/material-design.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreRoutingModule,
         NgChatModule,
+        FormsModule,
         MaterialDesignModule
     ],
     declarations: [
