@@ -8,6 +8,7 @@ require_once 'DatabaseOperations.php';
 require_once 'Helpers.php';
 require_once 'Sessions.php';
 require_once 'Users.php';
+require_once 'BotApi.php';
 function ConvertListToMessages($data)
 {
 	$messages = [];
@@ -56,7 +57,10 @@ function GetMessagesBySessionId($database, $sessionId)
 	$messages = ConvertListToMessages($data);
 	if(0== count($messages))
 	{
-		return [GetEmptyMessage()];
+		$message = GetEmptyMessage();
+
+		$message->SetValue(getResponse($database, []));
+		return [$message];
 	}
 	CompleteSessions($database, $messages);
 	CompleteUsers($database, $messages);
@@ -111,6 +115,7 @@ function AddMessage($database, $message)
 	$message->SetCreationTime(date('Y-m-d H:i:s'));
 	$message->SetSession(GetSessionsBySessionId($database, $message->GetSessionId())[0]);
 	$message->SetUser(GetUsersByUserId($database, $message->GetUserId())[0]);
+
 	return $message;
 	
 }
@@ -205,6 +210,11 @@ if(CheckGetParameters(["cmd"]))
 			);
 		
 			echo json_encode(AddMessage($database, $message));
+
+$messages = GetMessagesBySessionId($database,$_GET['sessionId']);
+
+			$message->SetValue(getResponse($database, $messages));
+AddMessage($database, $message);
 		}
 	
 	}
@@ -227,8 +237,19 @@ if(CheckGetParameters(["cmd"]))
 				$_POST['sessionId'],
 				$_POST['value']
 			);
+
+			file_put_contents("object6.log",json_encode($message)." empty");
 	
 			echo json_encode(AddMessage($database, $message));
+
+			$message->SetUserId(0);
+
+
+$messages = GetMessagesBySessionId($database,$_POST['sessionId']);
+
+			$message->SetValue(getResponse($database, $messages));
+
+			AddMessage($database, $message);
 		}
 
 	}
