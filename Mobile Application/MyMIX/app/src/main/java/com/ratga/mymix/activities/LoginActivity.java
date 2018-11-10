@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
 
             List<User> users = Users.getUsersByUsernamePassword(mEmail, mPassword);
 
-            if (users.get(0).getId().equals(0))
+            if (users.get(0).getId().equals("0"))
                 return false;
             userResult = users.get(0);
             return true;
@@ -235,7 +235,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
 
             if (success) {
                 final Session session = new Session(userResult.getUserId(),userResult);
@@ -246,6 +245,8 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("user", userResult);
                         intent.putExtra("session", session);
                         startActivity(intent);
+                        finish();
+                        showProgress(false);
                     }
 
                     @Override
@@ -254,6 +255,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             } else {
+                showProgress(false);
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
