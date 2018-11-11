@@ -60,6 +60,7 @@ function GetMessagesBySessionId($database, $sessionId)
 		$message = GetEmptyMessage();
 
 		$message->SetValue(getResponse($database, []));
+$message->SetCreationTime(date('Y-m-d H:i:s'));
 		return [$message];
 	}
 	CompleteSessions($database, $messages);

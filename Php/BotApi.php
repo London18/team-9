@@ -4,7 +4,7 @@ require_once 'Responses.php';
 
 function getKeywordsFromSentence($message)
 {
-    $words = explode(" ", strtolower($message->GetValue()));
+    $words = explode(" ", strtoupper($message->GetValue()));
 
     return $words;
 }
@@ -25,6 +25,7 @@ function getClosest($keywords, $responses)
                 {
 
                    $matches++;
+			file_put_contents("gasit.log"," empty");
 
                    break;
                 }
@@ -49,7 +50,7 @@ function getResponse($database, $messages)
     //first message
     if(0 == sizeof($messages))
     {
-        return "Hello! My name is Sam and i'm a chatbot. I want to help while while you are transfered to a real person. Let's start by telling me how you want me to call you";    
+        return "Hello! My name is Sam and i'm a chatbot. I want to help while you are transfered to a real person. Let's start by telling me how you want me to call you";    
     }
     else if(1 == sizeof($messages))
     {
