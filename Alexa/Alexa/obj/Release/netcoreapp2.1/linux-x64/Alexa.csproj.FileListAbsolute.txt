@@ -1,0 +1,11 @@
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.csprojAssemblyReference.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.csproj.CoreCompileInputs.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.AssemblyInfoInputs.cache
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.AssemblyInfo.cs
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Release\netcoreapp2.1\linux-x64\Alexa.deps.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Release\netcoreapp2.1\linux-x64\Alexa.runtimeconfig.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Release\netcoreapp2.1\linux-x64\Alexa.runtimeconfig.dev.json
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Release\netcoreapp2.1\linux-x64\Alexa.dll
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\bin\Release\netcoreapp2.1\linux-x64\Alexa.pdb
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.dll
+C:\Users\biabe\Workspace\team-9\Alexa\Alexa\obj\Release\netcoreapp2.1\linux-x64\Alexa.pdb

@@ -1,0 +1,6 @@
+import java.util.Arrays;
+
+public class NewArticle2 {
+	public String name;
+	public String id;
+}

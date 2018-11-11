@@ -1,0 +1,8 @@
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.specification.name=Java Platform API Specification
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.specification.version=1.8
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.version=1.8.0_161
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.vm.vendor=Oracle Corporation
+PREF_VM_INSTALL_SYSTEM_PROPERTY.org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType.1541808470146.java.vm.version=25.161-b12
+eclipse.preferences.version=1
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1541808470146">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="1541808470146" name\="jre1.8.0_161" path\="C\:\\Program Files\\Java\\jre1.8.0_161"/>\r\n</vmType>\r\n</vmSettings>\r\n

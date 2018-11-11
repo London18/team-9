@@ -1,0 +1,22 @@
+
+public class Article {
+	public String id;
+	public String date;
+	public String date_gmt;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+	public String id;
+}

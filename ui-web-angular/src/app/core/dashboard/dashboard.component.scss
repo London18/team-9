@@ -11,21 +11,40 @@
 }
 
 .card-container {
-    width: 50%;
-    margin: 100px 35% 0 15%;
+    width: 60%;
+    margin: 100px 30% 0 10%;
     vertical-align: middle;
 }
 
 .card {
     display: inline-block;
-    width: 48%;
     margin: 1%;
     padding: 0;
+    cursor: pointer;
+
+    &:hover {
+        .card-header {
+            background-color: #C5C8D9;
+        }
+        .card-content {
+            background-color: #C5C8D9;
+        }
+    }
+}
+
+.category-card {
+    width: 23%;
+}
+
+.post-card {
+    width: 31%;
 }
 
 .card-header {
     margin: 0;
     background-color: #FAFAFA;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .card-header-image {
@@ -65,7 +84,7 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 400px;
+    width: 25%;
     border: 1px green solid;
     background-color: white;
 }
@@ -81,7 +100,7 @@
 }
 
 .chat-body {
-    height: 500px;
+    height: 400px;
     background-color: #FDFDFD;
 }
 
