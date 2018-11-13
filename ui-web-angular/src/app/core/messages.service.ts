@@ -18,13 +18,6 @@ export class MessagesService {
   constructor(private httpClient: HttpClient) {
     this.messages$ = new BehaviorSubject<Message[]>(null);
     this.messages = new Array<Message>();
-    /* setTimeout(() => {
-      this.messages.push(this.welcomeMessage1);
-      this.messages$.next(this.messages);
-      setTimeout(() => {
-        this.messages.push(this.welcomeMessage2); this.messages$.next(this.messages);
-      }, 2000);
-    }, 2000); */
   }
 
   public sendMessage(messageText: string, userId: number, sessionId: number) {

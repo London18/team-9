@@ -1,0 +1,10 @@
+
+public class NewArticle {
+	public String id;
+	public String link;
+	public String title;
+	public String content;
+	public String excerpt;
+	public int[] categories;
+	public int[] tags;
+}

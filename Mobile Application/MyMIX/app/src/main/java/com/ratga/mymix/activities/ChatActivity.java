@@ -1,4 +1,5 @@
 package com.ratga.mymix.activities;
+
 import android.content.Intent;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ratga.mymix.R;
-import com.ratga.mymix.daos.Users;
 import com.ratga.mymix.models.Message;
 import com.ratga.mymix.models.Session;
 import com.ratga.mymix.models.User;
@@ -17,7 +17,6 @@ import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,13 +47,9 @@ public class ChatActivity extends AppCompatActivity {
         Messages.getMessagesBySessionId(session.getSessionId(), new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                if (response.body().get(0).getSessionId() == 0) {
-                    User bot = Users.getUsersByUserId(0).get(0);
-                    Messages.addMessage(new Message(bot, session, "Hi, I am Sam!"));
-                    Messages.addMessage(new Message(bot, session, "How can I help you?"));
-                }
                 startPollingMessage(adapter, session.getSessionId());
-            };
+            }
+
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 System.out.println();
@@ -64,7 +59,7 @@ public class ChatActivity extends AppCompatActivity {
         messageInput.setInputListener(new MessageInput.InputListener() {
             @Override
             public boolean onSubmit(CharSequence input) {
-                Messages.addMessage(new Message(user,session, input.toString()));
+                Messages.addMessage(new Message(user, session, input.toString()));
                 return true;
             }
         });
@@ -79,10 +74,9 @@ public class ChatActivity extends AppCompatActivity {
                 Messages.getMessagesBySessionId(session, new Callback<List<Message>>() {
                     @Override
                     public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                        boolean scrolled = messagesList.getScrollState() != 0;
                         for (Message m : response.body())
                             adapter.upsert(m);
-                        if(!scrolled)
+                        if (messagesList.getScrollState() == 0)
                             messagesList.scrollToPosition(0);
                         handler.postDelayed(r, 300);
                     }
@@ -98,8 +92,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
